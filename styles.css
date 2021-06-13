@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css?family=Copse&display=swap');
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --card-height: 80vh;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,256,0.8);
+    overflow: hidden;
+}
+
+.card {
+    width: var(--card-height);
+    height: var(--card-height);
+    justify-items: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, calc(var(--card-height) / 3));
+    grid-template-rows: repeat(3, calc(var(--card-height) / 3));
+    background-color: orange;
+    border-radius: 50%;
+}
+
+.check-box {
+    cursor: pointer;
+    position: absolute;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    top: 1.5vh;
+    width: calc(var(--card-height) * 1.1);
+    height: calc(var(--card-height) * 1.15);
+    font-size: 15vh;
+    color: rgba(256, 256, 256, 0.8);
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 5vh;
+    z-index: 20;
+}
+
+.check-box::selection {
+    cursor: none;
+}
+
+.check {
+    margin-top: -20%;
+    width: calc(var(--card-height) * 0.5);
+    height: calc(var(--card-height) * 0.9);
+    transform: rotate(45deg);
+    border-bottom: calc(var(--card-height) * 0.15) solid greenyellow;
+    border-right: calc(var(--card-height) * 0.15) solid greenyellow;
+}
+
+.dummy {
+    position: absolute;
+    display: none;
+}
+
+.corner {
+    width: calc(var(--card-height) * 0.5);
+    height: calc(var(--card-height) * 0.5);
+}
+
+.top-left-corner {
+    background: repeating-linear-gradient(45deg, red, red 1vh, white 1vh, white 1.5vh);
+    clip-path: polygon(0% 0%, 40% 0, 100% 100%, 0 40%);
+    margin-top: 75%;
+    margin-left: 75%;
+}
+
+.top-right-corner {
+    background: repeating-linear-gradient(-45deg, red, red 1vh, white 1vh, white 1.5vh);
+    clip-path: polygon(60% 0, 100% 0%, 100% 40%, 0 100%);
+    margin-top: 75%;
+    margin-right: 75%;
+}
+
+.bottom-left-corner {
+    background: repeating-linear-gradient(-45deg, red, red 1vh, white 1vh, white 1.5vh);
+    clip-path: polygon(0% 60%, 100% 0, 40% 100%, 0 100%);
+    margin-bottom: 75%;
+    margin-left: 75%;
+}
+
+.bottom-right-corner {
+    background: repeating-linear-gradient(45deg, red, red 1vh, white 1vh, white 1.5vh);
+    clip-path: polygon(0% 0%, 100% 60%, 100% 100%, 60% 100%);
+    margin-bottom: 75%;
+    margin-right: 75%;
+}
+
+.number-button {
+    font-family: "Copse";
+    text-align: center;
+    cursor: pointer;
+    line-height: calc(var(--card-height) / 3);;
+    width: calc(var(--card-height) / 3);
+    height: calc(var(--card-height) / 3);
+    border-radius: 50%;
+}
+
+.number-button.selected {
+    color: pink;
+    text-shadow: 0 0 5px black;
+}
+
+.button::selection{
+    color: none;
+}
+
+.empty {
+    color: none;
+    pointer-events: none;
+}
+
+.center {
+    width: calc(var(--card-height) / 6);
+    height: calc(var(--card-height) / 6);
+    background-color: white;
+    border: 0.3vh solid red;
+    z-index: 10;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    display: grid;
+    grid-gap: 1vh;
+    grid-template-columns: repeat(2, auto)
+}
+
+.addition,
+.subtraction,
+.multiplication,
+.division {
+    cursor: pointer;
+    font-family: "Copse";
+    font-size: calc(var(--card-height) * 0.045);
+    width: calc(var(--card-height) / 16);
+    height: calc(var(--card-height) / 16);
+    background-color: rgba(256,0,0,0.5);
+    border: 0.2vh solid black;
+    border-radius: 50%;
+    z-index: 15;
+}
+
+.addition.selected,
+.subtraction.selected,
+.multiplication.selected,
+.division.selected {
+    background-color: pink;
+}
+
+.controls {
+    margin-top: 2vh;
+    display: grid;
+    grid-template-columns: repeat(4, calc(var(--card-height) * 0.24));
+    grid-gap: 1vw;
+    text-align: center;
+    align-items: center;
+}
+
+.rules, 
+.answer,
+.hint,
+.reset {
+    cursor: pointer;
+    font-size: 3vh;
+    border: 0.3vh solid black;
+    border-radius: 1000px;
+    background-color: orange;
+}
+
+.text-box {
+    cursor: default;
+    visibility: visible;
+    grid-column: 1 / 5;
+    font-size: calc(var(--card-height) * 0.05);
+    height: calc(var(--card-height) * 0.1);
+    line-height: calc(var(--card-height) * 0.1);
+    color: rgba(255,255,255,0.8);
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 1000px;
+    
+}
+
+.text-box::selection {
+    color: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+@media (max-width: 500px) {
+    :root {
+        --card-height: 100vw;
+    }
+
+    .center {
+        width: calc(var(--card-height) / 4);
+        height: calc(var(--card-height) / 4);   
+        grid-gap: 1vw;
+    }
+
+    .addition,
+    .subtraction,
+    .multiplication,
+    .division {
+        cursor: pointer;
+        font-family: "Copse";
+        font-size: calc(var(--card-height) * 0.075);
+        width: calc(var(--card-height) / 10);
+        height: calc(var(--card-height) / 10);
+        background-color: rgba(256,0,0,0.5);
+        border: 0.2vh solid black;
+        border-radius: 50%;
+        z-index: 15;
+    }
+
+    .check-box {
+        top: 12%;
+        width: calc(var(--card-height));
+        height: 70vh;
+    }
+    
+    .text-box {
+        width: 99vw;
+    }
+}
