@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tl-to-br-background: repeating-linear-gradient(
+    45deg,
+    rgb(185 28 28),
+    rgb(185 28 28) 1.1vh,
+    rgb(228 228 231) 1.1vh,
+    rgb(228 228 231) 1.5vh
+  );
+
+  --tr-to-bl-background: repeating-linear-gradient(
+    -45deg,
+    rgb(185 28 28),
+    rgb(185 28 28) 1.1vh,
+    rgb(228 228 231) 1.1vh,
+    rgb(228 228 231) 1.5vh
+  );
+}
+
+*,
+html,
+body {
+  @apply bg-blue-900 text-zinc-100 max-w-screen-lg aspect-square mx-auto;
+}
+
+.top-left-corner {
+  background: var(--tl-to-br-background);
+  clip-path: polygon(0% 0%, 40% 0, 100% 100%, 0 40%);
+}
+
+.top-right-corner {
+  background: var(--tr-to-bl-background);
+  clip-path: polygon(60% 0, 100% 0%, 100% 40%, 0 100%);
+}
+
+.bottom-left-corner {
+  background: var(--tr-to-bl-background);
+  clip-path: polygon(0% 60%, 100% 0, 40% 100%, 0 100%);
+}
+
+.bottom-right-corner {
+  background: var(--tl-to-br-background);
+  clip-path: polygon(0% 0%, 100% 60%, 100% 100%, 60% 100%);
+}
+
+/* Assess  */
+
+.check-box {
+  cursor: pointer;
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  top: 1.5vh;
+  width: calc(var(--card-height) * 1.1);
+  height: calc(var(--card-height) * 1.15);
+  font-size: 15vh;
+  color: rgba(256, 256, 256, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5vh;
+  z-index: 20;
+}
+
+.check-box::selection {
+  cursor: none;
+}
+
+.check {
+  margin-top: -20%;
+  width: calc(var(--card-height) * 0.5);
+  height: calc(var(--card-height) * 0.9);
+  transform: rotate(45deg);
+  border-bottom: calc(var(--card-height) * 0.15) solid greenyellow;
+  border-right: calc(var(--card-height) * 0.15) solid greenyellow;
+}
+
+.dummy {
+  position: absolute;
+  display: none;
+}
+
+.corner {
+  width: calc(var(--card-height) * 0.5);
+  height: calc(var(--card-height) * 0.5);
+}
+
+.number-button {
+  font-family: "Copse";
+  text-align: center;
+  cursor: pointer;
+  line-height: calc(var(--card-height) / 3);
+  width: calc(var(--card-height) / 3);
+  height: calc(var(--card-height) / 3);
+  border-radius: 50%;
+}
+
+.number-button.selected {
+  color: pink;
+  text-shadow: 0 0 5px black;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+@media (max-width: 500px) {
+  :root {
+    --card-height: 100vw;
+  }
+
+  .center {
+    width: calc(var(--card-height) / 4);
+    height: calc(var(--card-height) / 4);
+    grid-gap: 1vw;
+  }
+
+  .addition,
+  .subtraction,
+  .multiplication,
+  .division {
+    cursor: pointer;
+    font-family: "Copse";
+    font-size: calc(var(--card-height) * 0.075);
+    width: calc(var(--card-height) / 10);
+    height: calc(var(--card-height) / 10);
+    background-color: rgba(256, 0, 0, 0.5);
+    border: 0.2vh solid black;
+    border-radius: 50%;
+    z-index: 15;
+  }
+
+  .check-box {
+    top: 12%;
+    width: calc(var(--card-height));
+    height: 70vh;
+  }
+
+  .text-box {
+    width: 99vw;
+  }
+}
