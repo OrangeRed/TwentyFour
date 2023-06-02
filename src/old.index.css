@@ -1,39 +1,29 @@
-@import url("https://fonts.googleapis.com/css?family=Copse&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+:root {
+  --tl-to-br-background: repeating-linear-gradient(
+    45deg,
+    rgb(185 28 28),
+    rgb(185 28 28) 1.1vh,
+    rgb(228 228 231) 1.1vh,
+    rgb(228 228 231) 1.5vh
+  );
+
+  --tr-to-bl-background: repeating-linear-gradient(
+    -45deg,
+    rgb(185 28 28),
+    rgb(185 28 28) 1.1vh,
+    rgb(228 228 231) 1.1vh,
+    rgb(228 228 231) 1.5vh
+  );
 }
 
 *,
 html,
 body {
-  @apply bg-blue-900 max-w-screen-lg aspect-square mx-auto;
-}
-
-:root {
-  --card-height: 80vh;
-  -webkit-tap-highlight-color: transparent;
-
-  --tl-to-br-background: repeating-linear-gradient(
-    45deg,
-    rgb(185 28 28),
-    rgb(185 28 28) 1vh,
-    rgb(228 228 231) 1vh,
-    rgb(228 228 231) 1.5vh
-  );
-  --tr-to-bl-background: repeating-linear-gradient(
-    -45deg,
-    rgb(185 28 28),
-    rgb(185 28 28) 1vh,
-    rgb(228 228 231) 1vh,
-    rgb(228 228 231) 1.5vh
-  );
+  @apply bg-blue-900 text-zinc-100 max-w-screen-lg aspect-square mx-auto;
 }
 
 .top-left-corner {
@@ -56,17 +46,9 @@ body {
   clip-path: polygon(0% 0%, 100% 60%, 100% 100%, 60% 100%);
 }
 
-body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
+/* Assess  */
 
-/* .check-box {
+.check-box {
   cursor: pointer;
   position: absolute;
   display: grid;
@@ -93,11 +75,16 @@ body {
   transform: rotate(45deg);
   border-bottom: calc(var(--card-height) * 0.15) solid greenyellow;
   border-right: calc(var(--card-height) * 0.15) solid greenyellow;
-} */
+}
 
 .dummy {
   position: absolute;
   display: none;
+}
+
+.corner {
+  width: calc(var(--card-height) * 0.5);
+  height: calc(var(--card-height) * 0.5);
 }
 
 .number-button {
@@ -107,7 +94,6 @@ body {
   line-height: calc(var(--card-height) / 3);
   width: calc(var(--card-height) / 3);
   height: calc(var(--card-height) / 3);
-  margin: 2rem;
   border-radius: 50%;
 }
 
@@ -116,44 +102,8 @@ body {
   text-shadow: 0 0 5px black;
 }
 
-.empty {
-  color: none;
-  pointer-events: none;
-}
-
-.center {
-  width: calc(var(--card-height) / 6);
-  height: calc(var(--card-height) / 6);
-  background-color: white;
-  border: 0.3vh solid rgb(185 28 28);
-  z-index: 10;
-  text-align: center;
-  align-content: center;
-  justify-content: center;
-  display: grid;
-  grid-gap: 1vh;
-  grid-template-columns: repeat(2, auto);
-}
-
-.addition,
-.subtraction,
-.multiplication,
-.division {
-  cursor: pointer;
-  font-family: "Copse";
-  font-size: calc(var(--card-height) * 0.045);
-  width: calc(var(--card-height) / 16);
-  height: calc(var(--card-height) / 16);
-  background-color: rgba(256, 0, 0, 0.5);
-  border: 0.2vh solid black;
-  border-radius: 50%;
-}
-
-.addition.selected,
-.subtraction.selected,
-.multiplication.selected,
-.division.selected {
-  background-color: pink;
+.hidden {
+  visibility: hidden;
 }
 
 @media (max-width: 500px) {
